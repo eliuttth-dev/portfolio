@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+// import { useState, useEffect } from "react";
+import data from "../../public/experience.json";
+
 export default function Experience() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const url = "/src/json/experience.json";
+  // useEffect(() => {
+  //   const url = "/src/json/experience.json";
 
-    axios
-      .get(url)
-      .then((res) => setData(res.data))
-      .catch((error) => console.error("Error fetching data", error));
-  }, []);
+  //   axios
+  //     .get(url)
+  //     .then((res) => setData(res.data))
+  //     .catch((error) => console.error("Error fetching data", error));
+  // }, []);
 
   return (
     <>
