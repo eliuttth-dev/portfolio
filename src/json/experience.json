@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "company": "Freelance",
+    "jobTitle": "Instructor Tech",
+    "time": "Nov 2023 - Present",
+    "expList": [
+      "Instruction on the fundamentals of HTML and CSS for creating attractive and responsive.",
+      "Teach advanced JavaScript programming, covering object-oriented programming, programming patterns design and coding best practices.",
+      "Capacitacion en profundidad sobre React, que abarca desde lo basico hasta las tecnicas avanzadas.",
+      "Transferencia solida de conocimientos sobre GIT, incluidos flujos de trabajo colaborativos y mejores practicas.",
+      "Instruccion sobre como construir servidores robustos usando Node.js y Express.",
+      "Explorar la creacion de API RESTful y su integracion con el front-end.",
+      "Ofrecer insights sobre bases de datos relacionales, centrandose en MySQL y su integracion con Node.js."
+    ],
+    "link": ""
+  },
+  {
+    "id": 2,
+    "company": "Curso Albert Einstein",
+    "jobTitle": "Full-Stack Developer",
+    "time": "Oct 2023 - Present",
+    "expList": [
+      "Lead the development of an innovative educational application for Brazilian students.",
+      "Using React and TypeScript to design an attractive, intuitive and responsive user interface.",
+      "Employ Node.js and Express to build a robust server-side infrastructure.",
+      "Integracion de MySQL para una gestion eficiente de la base de datos, garantizando un acceso rapido a la informacion del curso."
+    ],
+    "link": "https://www.cursoalbert.com/"
+  },
+  {
+    "id": 3,
+    "company": "Task Revolution",
+    "jobTitle": "Web Designer",
+    "time": "Jun 2023 - Oct 2023",
+    "expList": [
+      "Develop an efficient and attractive e-commerce platform with a comprehensive approach.",
+      "Covered both frontend and backend development.",
+      "Integrated Shopify functionalities to leverage your commerce capabilities, optimizing the overall efficiency.",
+      "Create an intuitive and attractive user interface to improve user experience."
+    ],
+    "link": "https://taskrevolution.com/"
+  },
+  {
+    "id": 4,
+    "company": "OIGETIT.AI - Fake News Filter",
+    "jobTitle": "Front-end Developer",
+    "time": "Dec 2021 - Aug 2022",
+    "expList": [
+      "Redo the Oigetit.ai interface - Mobile view of the fake news filter.",
+      "Ensure website responsiveness and performance.",
+      "Write clean and functional code.",
+      "Leverage React and TypeScript to create an attractive, easy-to-use interface for internal development."
+    ],
+    "link": "https://www.oigetit.com/"
+  }
+]
