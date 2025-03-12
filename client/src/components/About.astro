@@ -1,0 +1,75 @@
+<style>
+  :root{
+    --green-dot: #64C589;
+    --dark: #000005;
+    --light: #EAECF0;
+    --light-gray: #F6F6F6;
+    --gray: #A4AAB6;
+    --radius-full: 100%;
+  }
+  body{
+    padding: 0 0.5rem !important;
+    background-color: var(--light-gray);
+  }
+  .p-dot::before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    left:8px;
+    top:19px;
+    border-radius: var(--radius-full);
+    background-color: var(--gray);
+  }
+  .green-dot::before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    left:8px;
+    top:19px;
+    border-radius: var(--radius-full);
+    background-color: var(--green-dot);
+  }
+
+  .profile-pic{
+    border-radius: var(--radius-full);
+    width: 300px;
+    height: 300px;
+    border: 4px solid var(--light);
+  }
+  .profile-pic > img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-full);
+  }
+  /* PLAIN CSS IS BETTER THAN TAILWIND */
+  /*TODO: i should change all explicit coloring with tailwind custom coloring component*/
+
+</style>
+<header class="m-auto max-w-[1200px] mt-2 rounded bg-white shadow-md p-4">
+  test
+</header>
+<main class="m-auto max-w-[1200px] mt-2 rounded bg-white shadow-md p-4 ">
+  <section>
+    <div class="flex justify-between items-center">
+      <p class="relative font-bold text-xs py-2 px-4 bg-[#F6F6F6] rounded p-dot">Full Stack Engineer</p>
+      <span class="relative font-bold text-xs py-2 px-4 bg-[#D8F9E1] text-[#5BA66F] rounded green-dot">AVAILABLE FOR WORK</span>
+    </div>
+    <div class="w-full flex flex-col gap-4 mt-8 items-center p-2 lg:flex-row-reverse lg:justify-between">
+      <!-- Profile Picture -->
+      <div class="bg-white profile-pic p-2 flex items-center justify-center">
+        <img alt="profile-pic" src="/profile-pic.svg"/>
+      </div>
+
+      <!-- Text Content -->
+      <div class="">
+        <h1 class="font-bold text-2xl">I'm Eliuth</h1>
+        <p class="text-sm text-gray-500">Full Stack Developer from "WHATEVER", "PLACE". 
+          <br /> Currently some text more idk what to write
+        </p>
+      </div>
+
+    </div>
+  </section>
+</main>
