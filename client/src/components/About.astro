@@ -1,3 +1,7 @@
+---
+import Buttons from "./Buttons.astro";
+---
+
 <style>
   :root{
     --green-dot: #64C589;
@@ -10,26 +14,6 @@
   body{
     padding: 0 0.5rem !important;
     background-color: var(--light-gray);
-  }
-  .p-dot::before{
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    left:8px;
-    top:19px;
-    border-radius: var(--radius-full);
-    background-color: var(--gray);
-  }
-  .green-dot::before{
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    left:8px;
-    top:19px;
-    border-radius: var(--radius-full);
-    background-color: var(--green-dot);
   }
 
   .profile-pic{
@@ -53,8 +37,8 @@
 <main class="m-auto max-w-[1200px] mt-2 rounded bg-white shadow-md p-4 ">
   <section>
     <div class="flex justify-between items-center">
-      <p class="relative font-bold text-xs py-2 px-4 bg-[#F6F6F6] rounded p-dot">Full Stack Engineer</p>
-      <span class="relative font-bold text-xs py-2 px-4 bg-[#D8F9E1] text-[#5BA66F] rounded green-dot">AVAILABLE FOR WORK</span>
+      <Buttons title="Full Stack Engineer" type="decoration" design="default"/>
+      <Buttons title="Open To Work" type="decoration" design="available"/>
     </div>
     <div class="w-full flex flex-col gap-4 mt-8 items-center p-2 lg:flex-row-reverse lg:justify-between">
       <!-- Profile Picture -->
@@ -63,13 +47,17 @@
       </div>
 
       <!-- Text Content -->
-      <div class="">
+      <div class="h-full flex flex-col gap-4">
         <h1 class="font-bold text-2xl">I'm Eliuth</h1>
-        <p class="text-sm text-gray-500">Full Stack Developer from "WHATEVER", "PLACE". 
+        <p class="relative text-sm text-gray-500">Full Stack Developer from "WHATEVER", "PLACE". 
           <br /> Currently some text more idk what to write
         </p>
+        <!--- Buttons --->
+        <div class="flex gap-4">
+          <a class="w-fit border py-2 px-4 bg-neutral-950 text-white rounded font-bold text-sm">Hire me</a>
+          <button class="w-fit border py-2 px-4 rounded font-bold text-sm">Copy Email</button>
+        </div>
       </div>
-
     </div>
   </section>
 </main>

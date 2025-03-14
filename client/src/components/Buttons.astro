@@ -1,0 +1,26 @@
+---
+interface ButtonProps{
+  title: string;
+  design: "default" | "available" | "dark" | "outlined" | "social";
+  type: "default" | "link" | "decoration";
+  link?: string;
+}
+
+const {title, color, type, design, link} = Astro.props
+
+// Default Button Style
+const buttonDesignTypeDefault = "relative font-bold text-xs py-2 px-6 pr-4 rounded bg-snow-mist shadow-sm d-dot"
+const beforeDefaultDot = " before:content-[''] before:absolute before:w-[10px] before:h-[10px] before:top-[calc(100%/2.4)] before:left-[0.7rem] before:rounded-full before:bg-slate-haze"
+
+// Available Button Style
+const buttondesignTypeAvailable = "relative font-bold text-xs py-2 px-6 pr-4 bg-mint-breeze text-fern-shade rounded shadow-sm"
+const beforeAvailableDot = " before:content-[''] before:absolute before:w-[10px] before:h-[10px] before:top-[calc(100%/2.4)] before:left-[0.7rem] before:rounded-full before:bg-emerald-glow before:animate-pulse"
+---
+
+{ type === "decoration"  && design === "default" ? (
+  <button class=`${buttonDesignTypeDefault} ${beforeDefaultDot}`>{title}</button>
+) : null }
+
+{ type === "decoration"  && design === "available" ? (
+  <button class=`${buttondesignTypeAvailable} ${beforeAvailableDot}`>{title}</button>
+) : null }

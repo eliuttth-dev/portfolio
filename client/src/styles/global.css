@@ -2,3 +2,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 
+@theme {
+  /* ### COLORS ### */
+  --color-snow-mist: #F6F6F6;
+  --color-emerald-glow: #64C589;
+  --color-midnight-void: #000005;
+  --color-cloud-whisper: #EAECF0;
+  --color-slate-haze: #A4AAB6;
+  --color-mint-breeze: #D8F9E1;
+  --color-fern-shade: #5BA66F;
+}
