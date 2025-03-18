@@ -1,6 +1,7 @@
 type EventType = {
+  action: string;
   status: boolean;
-  message?: string;
+  message: string;
 }
 
 interface NewEventProps{
@@ -12,3 +13,4 @@ export const useNewEvent = ({action, event}: NewEventProps): void => {
   const e = new CustomEvent(action, { detail: event })
   document.dispatchEvent(e);
 }
+

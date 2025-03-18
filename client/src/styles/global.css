@@ -11,4 +11,20 @@
   --color-slate-haze: #A4AAB6;
   --color-mint-breeze: #D8F9E1;
   --color-fern-shade: #5BA66F;
+  --color-silver-mist: #E5E5E5;
+  
+  /* ### ANIMATIONS ### */
+  --animate-bounce-from-bot: bounce-from-bot 2s ease-in-out infinite;
+
+  @keyframes bounce-from-bot{
+    0%{
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-60%);
+    }
+    100%{
+      transform: translateY(0);
+    }
+  }
 }

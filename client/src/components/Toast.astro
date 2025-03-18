@@ -2,7 +2,8 @@
 interface ToastProps{
   id: "success" | "error" | "warn";
 }
-const {status, title} = Astro.props;
+
+const {status} = Astro.props;
 ---
 <style>
   .animate-toast{
@@ -11,10 +12,11 @@ const {status, title} = Astro.props;
   .animate-toast.active{
     transform: translateY(0px);
   }
+  /*TODO: Create styles for success | error | warn*/
 </style>
 <section class="w-screen fixed left-0 top-0 z-1 p-4 flex items-center justify-center transition-all ease-in-out duration-200 animate-toast" id={status}>
   <div class="py-2 px-8 rounded shadow-sm bg-mint-breeze font-bold text-xs text-emerald-glow border border-2-emerald-glow flex items-center gap-4">
-    <img src="/check-icon.svg" width="32px"/><p>{title}</p>
+    <img src="/check-icon.svg" width="32px"/><p id="p-title"></p>
   </div>
 </section>
 <script>
@@ -25,13 +27,13 @@ const {status, title} = Astro.props;
   document.addEventListener("ActiveToast", async (e) => {
     if(activeStatus) return;
 
-    const toggleToastHistory = [];
-    const status = await e.detail.status;
-    if(!status) return;
+    const title = document.getElementById("p-title")
+    const event = await e.detail;
+    if(!event) return;
 
-    console.log(status)
     const getToastId = document.getElementById("success")
-    
+
+    title.textContent = event.message;
     getToastId.classList.add("active");
     activeStatus = true;
     

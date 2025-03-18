@@ -1,6 +1,7 @@
 ---
 import Buttons from "./Buttons.astro";
 import Toast from "./Toast.astro";
+import Experience from "./Experience.astro";
 ---
 
 <style>
@@ -28,12 +29,60 @@ import Toast from "./Toast.astro";
     height: 100%;
     border-radius: var(--radius-full);
   }
-  /* PLAIN CSS IS BETTER THAN TAILWIND */
-  /*TODO: i should change all explicit coloring with tailwind custom coloring component*/
+  /* FIX THIS CSS BECAUSE @theme contains global variables*/
+.border-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background: black;
+  border-radius: 50%;
+  overflow: hidden; /* Ensures glow doesn't leak outside */
+  padding: 20px;
+}
+
+/* Glow Effect */
+.border-container::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(136, 58, 255, 0.8), rgba(236, 72, 153, 0.6), rgba(59, 130, 246, 0.6), transparent);
+  top: var(--yPos);
+  left: var(--xPos);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  transition: top 0.2s ease-out, left 0.2s ease-out;
+  pointer-events: none;
+  clip-path: circle(50%);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Ensures content inside is also rounded */
+  position: relative;
+}
+.content::after{
+  content: "";
+  position: absolute;
+  width: 185px;
+  height: 185px;
+  background: white;
+  border-radius: 100%;
+}
 
 </style>
-<main class="m-auto max-w-[1200px] mt-2 rounded bg-white shadow-md p-4 ">
-  <Toast status="success" title="Email copied to clipboard!"/>
+<main class="m-auto max-w-[1200px] mt-2 rounded bg-white shadow-md p-4 h-auto">
+  <Toast status="success"/>
   <section>
     <div class="flex justify-between items-center">
       <Buttons title="Full Stack Engineer" type="decoration" design="default"/>
@@ -56,11 +105,69 @@ import Toast from "./Toast.astro";
         as Frontend Specialist
         </p>
         <!--- Buttons --->
-        <div class="flex gap-4 ">
+        <div class="flex flex-col gap-4 md:flex-row">
           <Buttons title="Hire me" type="link" design="dark" link="http://localhost:4321/"/>
-          <Buttons title="Copy Email" type="default" design="outlined"/>
+          <Buttons title="Copy Email" type="default" design="outlined" customClass="copy-email"/>
         </div>
       </div>
    </div>
   </section>
+  <Experience />
+  <div class="border-container">
+    <div class="content">
+      <p>Hover Me!</p>
+    </div>
+  </div>
 </main>
+<script>
+  import {useNewEvent} from "../utils/customEvents.ts";
+    
+  /* Copy Email*/
+  function copyToClipboard(){
+    try{
+      const res = navigator.clipboard.writeText("eliuttth.dev@gmail.com");
+      useNewEvent({action: "ActiveToast", event: {
+        action: "copy",
+        status: "successful",
+        message: "Email copy to clipboard!"
+      }})
+    }catch(err){
+      console.log(err.message);
+    }
+  }
+
+  const btnCopyEmail = document.querySelector(".copy-email");
+  btnCopyEmail.addEventListener("click", () => {
+    copyToClipboard();
+  })
+
+  /*DYNAMIC DIV BG*/
+  const borderDiv = document.querySelector(".border-container");
+
+  function updateBorder(x, y, size = 200) {
+    const { left, top, width, height } = borderDiv.getBoundingClientRect();
+
+    let xPos = ((x - left) / width) * 100;
+    let yPos = ((y - top) / height) * 100;
+
+    // Set limits to prevent excessive movement
+    const minLimit = 20;  // Min % position
+    const maxLimit = 80;  // Max % position
+
+    xPos = Math.max(minLimit, Math.min(xPos, maxLimit));
+    yPos = Math.max(minLimit, Math.min(yPos, maxLimit));
+
+    borderDiv.style.setProperty("--xPos", `${xPos}%`);
+    borderDiv.style.setProperty("--yPos", `${yPos}%`);
+    borderDiv.style.setProperty("--size", `${size}px`);
+  }
+  document.addEventListener("mousemove", (e) => {
+    updateBorder(e.clientX, e.clientY, 80);
+  });
+
+  document.addEventListener("mouseleave", () => {
+    updateBorder(window.innerWidth / 2, window.innerHeight / 2, 200);
+  });
+
+  updateBorder(window.innerWidth / 2, window.innerHeight / 2, 200);
+</script>

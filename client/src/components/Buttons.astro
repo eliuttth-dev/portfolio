@@ -5,9 +5,11 @@ interface ButtonProps{
   design: "default" | "available" | "dark" | "outlined" | "social";
   type: "default" | "link" | "decoration";
   link?: string;
+  customClass?: string;
+  action?: string;
 }
 
-const {title, color, type, design, link} = Astro.props
+const {title, color, type, design, link, customClass, action} = Astro.props
 
 // Animation
 const defaultAnimationStyle = "transition-all ease-out duration-200"
@@ -27,41 +29,99 @@ const beforeDarkDesign= " before:content-[''] before:absolute before:w-[10px] be
 // Outlined Button Style
 const buttonDesignTypeOutlined= "relative font-bold text-xs py-2 px-6 bg-white text-midnight-void border rounded shadow-sm h-fit"
 
+// Social Button Style
+const buttonDesignTypeSocial = "relative font-bold text-xs py-2 px-6 bg-white text-midnight-void border rounded shadow-sm h-fit flex"
 ---
-{ type === "decoration"  && design === "default" ? (
-  <button class=`${buttonDesignTypeDefault} ${beforeDefaultDot}`>{title}</button>
+<!--- TYPE: DECORATION --->
+{ type === "decoration" && design === "default" ? (
+  <button className={`${buttonDesignTypeDefault} ${beforeDefaultDot} ${customClass || ''}`}>{title}</button>
 ) : null }
 
-{ type === "decoration"  && design === "available" ? (
-  <button class=`${buttonDesignTypeAvailable} ${beforeAvailableDot}`>{title}</button>
+{ type === "decoration" && design === "available" ? (
+  <button className={`${buttonDesignTypeAvailable} ${beforeAvailableDot} ${customClass || ''}`}>{title}</button>
+) : null }
+
+{ type === "decoration" && design === "dark" ? (
+  <button className={`${buttonDesignTypeDark} ${beforeDarkDesign} ${customClass || ''}`}>{title}</button>
+) : null }
+
+{ type === "decoration" && design === "outlined" ? (
+  <button className={`${buttonDesignTypeOutlined} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white cursor-pointer ${customClass || ''}`}>{title}</button>
+) : null }
+
+{ type === "decoration" && design === "social" ? (
+  <button className={`${buttonDesignTypeSocial} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white cursor-pointer ${customClass || ''}`}>{title}</button>
+) : null }
+
+
+<!--- TYPE: DEFAULT--->
+{ type === "default" && design === "default" ? (
+  <button className={`${buttonDesignTypeDefault} ${beforeDefaultDot} ${defaultAnimationStyle} hover:bg-gray-300 ${customClass || ''}`}>{title}</button>
+) : null }
+
+{ type === "default" && design === "available" ? (
+  <button className={`${buttonDesignTypeAvailable} ${beforeAvailableDot} ${defaultAnimationStyle} hover:bg-green-300 ${customClass || ''}`}>{title}</button>
 ) : null }
 
 { type === "default" && design === "dark" ? (
-  <button class=`${buttonDesignTypeDark} ${beforeDarkDesign}`>{title}</button>
-) : null }
-
-{ type === "link" && design === "dark" ? (
-<a href={link} class=`${buttonDesignTypeDark} ${beforeDarkDesign} ${defaultAnimationStyle} hover:bg-white hover:text-midnight-void`>{title}</a>
+  <button className={`${buttonDesignTypeDark} ${beforeDarkDesign} ${defaultAnimationStyle} hover:bg-gray-900 hover:text-white ${customClass || ''}`}>{title}</button>
 ) : null }
 
 { type === "default" && design === "outlined" ? (
-<button class=`${buttonDesignTypeOutlined} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white cursor-pointer` id="btn-copy-email">{title}</button>
+<button className={`${buttonDesignTypeOutlined} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white cursor-pointer ${customClass || ''}`} onclick={action}>{title}</button>
 ) : null }
 
+{ type === "link" && design === "default" ? (
+  <a href={link} className={`${buttonDesignTypeDefault} ${beforeDefaultDot} ${defaultAnimationStyle} hover:bg-gray-300 ${customClass || ''}`}>{title}</a>
+) : null }
+
+{ type === "link" && design === "available" ? (
+  <a href={link} className={`${buttonDesignTypeAvailable} ${beforeAvailableDot} ${defaultAnimationStyle} hover:bg-green-300 ${customClass || ''}`}>{title}</a>
+) : null }
+
+{ type === "link" && design === "dark" ? (
+  <a href={link} className={`${buttonDesignTypeDark} ${beforeDarkDesign} ${defaultAnimationStyle} hover:bg-white hover:text-midnight-void ${customClass || ''}`}>{title}</a>
+) : null }
+
+{ type === "link" && design === "outlined" ? (
+  <a href={link} className={`${buttonDesignTypeOutlined} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white cursor-pointer ${customClass || ''}`}>{title}</a>
+) : null }
+
+{ type === "link" && design === "social" ? (
+<a className={`${buttonDesignTypeSocial} ${defaultAnimationStyle} hover:bg-silver-mist flex flex-col gap-4 items-center md:flex-row h-[128px] ${customClass || ''} button-social`}>
+  <!-- Button Image -->
+  <div class="w-[128px] h-[128px] rounded-full flex items-center justify-center p-2 shadow-sm">
+    <div class="w-[104px] h-[104px] rounded-full bg-[#d9d9d9] p-2 flex-shrink-0">
+      <img alt="social-image" src="/img-placeholder.svg" class="w-full h-fit object-center!" />
+    </div>
+  </div>
+  <!-- Button Title & Desc -->
+  <div class="w-full flex flex-col gap-2 items-center md:items-start">
+    <p>{title}</p>
+    <p class="font-normal"><b>Role:</b> Full-Stack Developer</p>
+    <p class="font-normal"><b>Stack:</b> React, Go, AWS, SQL, MongoDB</p>
+  </div>
+  <img alt="arrow-icon" src="/arrow-icon.svg"  width="24px" class="rotate-90 md:rotate-0 arrow-icon transition-all ease-out duration-200"/>
+  </a>
+) : null }
 
 <script>
-  import { useNewEvent } from "../utils/customEvents.ts";
-  
-  function copyToClipboard(){
-    try{
-      const res = navigator.clipboard.writeText("eliuttth.dev@gmail.com");
-      useNewEvent({action: "ActiveToast", event: { status: true }})
-    }catch(err){
-      console.log(err.message);
-    }
-  }
-  const btnCopyElement = document.getElementById("btn-copy-email");
-  btnCopyElement.addEventListener("click", copyToClipboard);
+
+  // Bounce Animation
+  const enterBounceAnimation = (e, child) => child.classList.toggle("translate-x-[10px]")
+
+  // Button - Type: Link - Design: Social
+  const btnSocial= document.querySelectorAll(".button-social");
+  const arrowIcon = document.querySelectorAll(".arrow-icon");
+
+  btnSocial.forEach((item,index) => {
+    item.addEventListener("mouseenter",(e) => enterBounceAnimation(e, arrowIcon[index]))
+    item.addEventListener("mouseleave",(e) => enterBounceAnimation(e, arrowIcon[index]))
+  })
 
 
+  // Check window size < 767
+  window.addEventListener("resize", () => {
+    console.log(window.innerWidth)
+  })
 </script>
