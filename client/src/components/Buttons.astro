@@ -68,11 +68,11 @@ const buttonDesignTypeSocial = "relative font-bold text-xs py-2 px-6 bg-white te
 ) : null }
 
 { type === "default" && design === "outlined" ? (
-<button className={`${buttonDesignTypeOutlined} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white cursor-pointer ${customClass || ''}`} onclick={action}>{title}</button>
+<button className={`${buttonDesignTypeOutlined} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white focus:bg-midnight-void focus:text-white active:bg-midnight-void active:text-white cursor-pointer ${customClass || ''}`} onclick={action}>{title}</button>
 ) : null }
 
 { type === "link" && design === "default" ? (
-  <a href={link} className={`${buttonDesignTypeDefault} ${beforeDefaultDot} ${defaultAnimationStyle} hover:bg-gray-300 ${customClass || ''}`}>{title}</a>
+  <a href={link} className={`${buttonDesignTypeDefault} ${beforeDefaultDot} ${defaultAnimationStyle} hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-300 ${customClass || ''}`}>{title}</a>
 ) : null }
 
 { type === "link" && design === "available" ? (
@@ -80,19 +80,19 @@ const buttonDesignTypeSocial = "relative font-bold text-xs py-2 px-6 bg-white te
 ) : null }
 
 { type === "link" && design === "dark" ? (
-  <a href={link} className={`${buttonDesignTypeDark} ${beforeDarkDesign} ${defaultAnimationStyle} hover:bg-white hover:text-midnight-void ${customClass || ''}`}>{title}</a>
+  <a href={link} className={`${buttonDesignTypeDark} ${beforeDarkDesign} ${defaultAnimationStyle} hover:bg-white hover:text-midnight-void focus:bg-white focus:text-midnight-void active:bg-white active:text-midnight-void  ${customClass || ''}`}>{title}</a>
 ) : null }
 
 { type === "link" && design === "outlined" ? (
-  <a href={link} className={`${buttonDesignTypeOutlined} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white cursor-pointer ${customClass || ''}`}>{title}</a>
+  <a href={link} className={`${buttonDesignTypeOutlined} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white focus:bg-midnight-void focus:text-white active:bg-midnight-void active:text-white cursor-pointer ${customClass || ''}`}>{title}</a>
 ) : null }
 
 { type === "link" && design === "social" ? (
-<a className={`${buttonDesignTypeSocial} ${defaultAnimationStyle} hover:bg-silver-mist flex flex-col gap-4 items-center md:flex-row h-[128px] ${customClass || ''} button-social`}>
+<a className={`${buttonDesignTypeSocial} ${defaultAnimationStyle} hover:bg-silver-mist focus:bg-silver-mist active:bg-silver-mist flex flex-col gap-4 items-center md:flex-row h-[128px] ${customClass || ''} button-social`}>
   <!-- Button Image -->
   <div class="w-[128px] h-[128px] rounded-full flex items-center justify-center p-2 shadow-sm">
     <div class="w-[104px] h-[104px] rounded-full bg-[#d9d9d9] p-2 flex-shrink-0">
-      <img alt="social-image" src="/img-placeholder.svg" class="w-full h-fit object-center!" />
+      <img alt="social-image" src="/img-placeholder.svg" class="w-[100%] object-center" />
     </div>
   </div>
   <!-- Button Title & Desc -->
@@ -106,6 +106,8 @@ const buttonDesignTypeSocial = "relative font-bold text-xs py-2 px-6 bg-white te
 ) : null }
 
 <script>
+  // Safari trick to force hover & focus
+  document.addEventListener("touchstart", () => {}, true);
 
   // Bounce Animation
   const enterBounceAnimation = (e, child) => child.classList.toggle("translate-x-[10px]")
