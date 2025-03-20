@@ -10,7 +10,7 @@ export default defineConfig({
     host: '0.0.0.0', // Allows access from other devices
     port: 4321,
     allowedHosts: [
-      '3730-91-116-116-82.ngrok-free.app',
+      '177d-85-251-218-228.ngrok-free.app',
     ],
   },
 });

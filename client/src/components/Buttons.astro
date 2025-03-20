@@ -23,7 +23,7 @@ const buttonDesignTypeAvailable = "relative font-bold text-xs py-2 px-6 pr-4 bg-
 const beforeAvailableDot = " before:content-[''] before:absolute before:w-[10px] before:h-[10px] before:top-[calc(100%/2.4)] before:left-[0.7rem] before:rounded-full before:bg-emerald-glow before:animate-pulse"
 
 // Dark Button Style
-const buttonDesignTypeDark = "relative font-bold text-xs py-2 px-6 pr-4 bg-midnight-void text-white rounded shadow-sm h-fit border h-fit"
+const buttonDesignTypeDark = "relative font-bold text-xs py-2 px-6 bg-midnight-void text-white rounded shadow-sm h-fit border h-fit"
 const beforeDarkDesign= " before:content-[''] before:absolute before:w-[10px] before:h-[10px] before:top-[calc(100%/2.4)] before:left-[0.7rem] before:rounded-full before:bg-white before:border before:animate-pulse"
 
 // Outlined Button Style
@@ -68,7 +68,7 @@ const buttonDesignTypeSocial = "relative font-bold text-xs py-2 px-6 bg-white te
 ) : null }
 
 { type === "default" && design === "outlined" ? (
-<button className={`${buttonDesignTypeOutlined} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white focus:bg-midnight-void focus:text-white active:bg-midnight-void active:text-white cursor-pointer ${customClass || ''}`} onclick={action}>{title}</button>
+<button className={`${buttonDesignTypeOutlined} ${defaultAnimationStyle} hover:bg-midnight-void hover:text-white active:bg-midnight-void active:text-white cursor-pointer ${customClass || ''}`} onclick={action}>{title}</button>
 ) : null }
 
 { type === "link" && design === "default" ? (
@@ -80,7 +80,7 @@ const buttonDesignTypeSocial = "relative font-bold text-xs py-2 px-6 bg-white te
 ) : null }
 
 { type === "link" && design === "dark" ? (
-  <a href={link} className={`${buttonDesignTypeDark} ${beforeDarkDesign} ${defaultAnimationStyle} hover:bg-white hover:text-midnight-void focus:bg-white focus:text-midnight-void active:bg-white active:text-midnight-void  ${customClass || ''}`}>{title}</a>
+  <a href={link} className={`${buttonDesignTypeDark} ${defaultAnimationStyle} hover:bg-white hover:text-midnight-void active:bg-white active:text-midnight-void  outline-none ${customClass || ''}`}>{title}</a>
 ) : null }
 
 { type === "link" && design === "outlined" ? (
